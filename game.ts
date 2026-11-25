@@ -135,10 +135,10 @@ export class ReversiMatch {
     const hostColor: ReversiColor = settings.hostColor === 'white' ? 'white' : 'black';
     const host = seats.find((seat) => seat.userId === hostUserId) ?? seats[0]!;
     const other = seats.find((seat) => seat.userId !== host.userId)!;
-    const colors: Record<ReversiColor, string> = {
+    const colors = {
       [hostColor]: host.userId,
       [opposite(hostColor)]: other.userId,
-    };
+    } as Record<ReversiColor, string>;
     const match: Match = {
       id: matchId,
       seats,

@@ -62,7 +62,8 @@ ws.on('message', (raw) => {
   if (!game) return;
   if (message.t === 'register.ack') return;
   if (message.t === 'match.create') {
-    game.handle({ ...message, settings: { ...settings, ...message.settings } });
+    const create = message as Extract<PlatformToGame, { t: 'match.create' }>;
+    game.handle({ ...create, settings: { ...settings, ...create.settings } });
     return;
   }
   game.handle(message as PlatformToGame);
